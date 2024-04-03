@@ -1,0 +1,21 @@
+{
+    "compilerOptions": {
+      "noImplicitReturns": true,
+      "noUnusedLocals": true,
+      "removeComments": true,
+      "noEmit": true,
+      "allowImportingTsExtensions": true,
+      "target": "es5",
+      "module": "ESNext",
+      "strict": true,
+      "rootDirs": ["./node_modules/"]
+    },
+    "files": [
+        "./main.ts",
+        "./node_modules/nakama-runtime/index.d.ts"
+    ],
+    "exclude": [
+        "node_modules",
+        "build"
+    ]
+}
