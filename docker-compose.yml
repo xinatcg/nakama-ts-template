@@ -22,7 +22,7 @@ services:
       - data:/var/lib/postgresql/data
 
   tf:
-    image: tensorflow/serving
+    image: emacski/tensorflow-serving:2.6.0
     container_name: template_tf
     environment:
       - MODEL_NAME=ttt
@@ -53,6 +53,9 @@ services:
       - "7349"
       - "7350"
       - "7351"
+    volumes:
+      - ./data:/nakama/data
+      - ./build:/nakama/data/modules/build
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:7350/"]
       interval: 10s

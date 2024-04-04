@@ -12,8 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { OpCode, Mark } from './messages.ts';
-import { State } from './match_handler.ts';
+import { OpCode, Mark } from './messages';
+import { State } from './match_handler';
 
 export const aiUserId = "ai-user-id";
 const tfServingAddress: string= "http://tf:8501/v1/models/ttt:predict";

@@ -12,8 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { moduleName } from './match_handler.ts';
-import { RpcFindMatchRequest, RpcFindMatchResponse } from './messages.ts';
+import { moduleName } from './match_handler';
+import { RpcFindMatchRequest, RpcFindMatchResponse } from './messages';
 
 export let rpcFindMatch: nkruntime.RpcFunction = function (ctx: nkruntime.Context, logger: nkruntime.Logger, nk: nkruntime.Nakama, payload: string): string {
     if (!ctx.userId) {

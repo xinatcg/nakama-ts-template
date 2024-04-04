@@ -12,9 +12,9 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { Board, Mark, BoardPosition, Message, StartMessage, UpdateMessage, DoneMessage, MoveMessage, OpCode } from './messages.ts';
-import { msecToSec } from './daily_rewards.ts';
-import { aiUserId, aiPresence, aiTurn } from './ai.ts';
+import { Board, Mark, BoardPosition, Message, StartMessage, UpdateMessage, DoneMessage, MoveMessage, OpCode } from './messages';
+import { msecToSec } from './daily_rewards';
+import { aiUserId, aiPresence, aiTurn } from './ai';
 
 export const moduleName = "tic-tac-toe_js";
 

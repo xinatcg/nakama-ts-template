@@ -1,17 +1,18 @@
-FROM heroiclabs/nakama-pluginbuilder:3.16.0 AS builder
-
-ENV GO111MODULE on
-ENV CGO_ENABLED 1
-ENV GOPRIVATE "github.com/heroiclabs/nakama-project-template"
+FROM node:alpine AS node-builder
 
 WORKDIR /backend
-COPY . .
 
-RUN go build --trimpath --mod=vendor --buildmode=plugin -o ./backend.so
+COPY package*.json .
+RUN npm install
 
-FROM heroiclabs/nakama:3.16.0
+COPY rollup.config.js .
+COPY babel.config.json .
+COPY jest-config.ts .
+COPY tsconfig.json .
+COPY src/*.ts src/
+RUN npm run build
 
-COPY --from=builder /backend/backend.so /nakama/data/modules
-COPY --from=builder /backend/*.lua /nakama/data/modules/
-COPY --from=builder /backend/build/*.js /nakama/data/modules/build/
-COPY --from=builder /backend/local.yml /nakama/data/
+FROM heroiclabs/nakama:3.21.1
+
+COPY --from=node-builder /backend/build/*.js /nakama/data/modules/build/
+COPY local.yml /nakama/data/

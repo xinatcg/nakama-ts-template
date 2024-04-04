@@ -3,14 +3,14 @@ data_dir: "./data/"
 
 logger:
   stdout: false
-  level: "info"
+  level: "DEBUG"
   file: "/nakama/data/logfile.log"
 
 console:
   port: 7351
   max_message_size_bytes: 409600
-  username: NK_CONSOLE_PROD_USERNAME
-  password: NK_CONSOLE_PROD_PWD
+  username: username
+  password: password
 
 runtime:
   js_entrypoint: "build/index.js"

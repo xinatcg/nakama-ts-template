@@ -12,9 +12,9 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { moduleName, matchInit, matchJoinAttempt, matchJoin, matchLeave, matchLoop, matchTerminate, matchSignal } from './match_handler.ts';
-import { rpcFindMatch } from './match_rpc.ts';
-import { rpcReward } from './daily_rewards.ts';
+import { moduleName, matchInit, matchJoinAttempt, matchJoin, matchLeave, matchLoop, matchTerminate, matchSignal } from './match_handler';
+import { rpcFindMatch } from './match_rpc';
+import { rpcReward } from './daily_rewards';
 
 const rpcIdRewards = 'rewards_js';
 const rpcIdFindMatch = 'find_match_js';
