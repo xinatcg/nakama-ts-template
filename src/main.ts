@@ -34,8 +34,34 @@ function InitModule(ctx: nkruntime.Context, logger: nkruntime.Logger, nk: nkrunt
         matchSignal,
     });
 
+    initializer.registerRpc('version', version);
+
     logger.info('JavaScript logic loaded.');
 }
+
+/**
+ * Version API
+ * @param ctx
+ * @param logger
+ * @param nk
+ * @param payload
+ */
+const version: nkruntime.RpcFunction =
+    function (ctx: nkruntime.Context, logger: nkruntime.Logger, nk: nkruntime.Nakama, payload: string = ""): string {
+        let input: any = {}
+        if (payload) {
+            JSON.parse(payload)
+        }
+        logger.info(`${process.env.VERSION}-${process.env.BUILD_TIME}: input: %q`, input);
+        let result = {
+            version: process.env.VERSION,
+            time: process.env.BUILD_TIME,
+            env: process.env.MODE
+        }
+
+        return JSON.stringify(result);
+    }
+
 
 // Reference InitModule to avoid it getting removed on build
 !InitModule && InitModule.bind(null);

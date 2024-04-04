@@ -6,6 +6,7 @@
   "type": "module",
   "scripts": {
     "build": "tsc --noEmit && rollup -c",
+    "build-dev": "MODE=dev rollup -c",
     "type-check": "tsc --noEmit",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -36,7 +37,9 @@
     "@rollup/plugin-json": "^6.1.0",
     "@rollup/plugin-node-resolve": "^15.2.3",
     "@rollup/plugin-typescript": "^11.1.6",
+    "@types/node": "^20.12.4",
     "rollup": "^4.14.0",
+    "rollup-plugin-replace": "^2.2.0",
     "tslib": "^2.6.2",
     "typescript": "^5.3.3"
   }
