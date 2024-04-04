@@ -7,14 +7,14 @@ services:
       - POSTGRES_DB=nakama
       - POSTGRES_PASSWORD=localdb
     expose:
-      - "8080"
-      - "5432"
+      - '8080'
+      - '5432'
     image: postgres:12.2-alpine
     ports:
-      - "5432:5432"
-      - "8080:8080"
+      - '5432:5432'
+      - '8080:8080'
     healthcheck:
-      test: ["CMD", "pg_isready", "-U", "postgres", "-d", "nakama"]
+      test: ['CMD', 'pg_isready', '-U', 'postgres', '-d', 'nakama']
       interval: 3s
       timeout: 3s
       retries: 5
@@ -28,12 +28,12 @@ services:
     environment:
       - MODEL_NAME=ttt
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:8501/"]
+      test: ['CMD', 'curl', '-f', 'http://localhost:8501/']
       interval: 10s
       timeout: 5s
       retries: 5
     ports:
-      - "8501"
+      - '8501'
     volumes:
       - ./model:/models/ttt
     restart: unless-stopped
@@ -45,29 +45,29 @@ services:
       - postgres
       - tf
     entrypoint:
-      - "/bin/sh"
-      - "-ecx"
+      - '/bin/sh'
+      - '-ecx'
       - >
         /nakama/nakama migrate up --database.address postgres:localdb@postgres:5432/nakama?sslmode=disable &&
         exec /nakama/nakama --config /nakama/data/local.yml --database.address postgres:localdb@postgres:5432/nakama?sslmode=disable
     expose:
-      - "7349"
-      - "7350"
-      - "7351"
+      - '7349'
+      - '7350'
+      - '7351'
     volumes:
       - ./data:/nakama/data
       - ./build:/nakama/data/modules/build
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:7350/"]
+      test: ['CMD', 'curl', '-f', 'http://localhost:7350/']
       interval: 10s
       timeout: 5s
       retries: 5
     links:
-      - "postgres:db"
+      - 'postgres:db'
     ports:
-      - "7349:7349"
-      - "7350:7350"
-      - "7351:7351"
+      - '7349:7349'
+      - '7350:7350'
+      - '7351:7351'
     restart: unless-stopped
 
 volumes:

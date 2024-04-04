@@ -12,31 +12,45 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { moduleName, matchInit, matchJoinAttempt, matchJoin, matchLeave, matchLoop, matchTerminate, matchSignal } from './match_handler';
-import { rpcFindMatch } from './match_rpc';
-import { rpcReward } from './daily_rewards';
+import {
+  moduleName,
+  matchInit,
+  matchJoinAttempt,
+  matchJoin,
+  matchLeave,
+  matchLoop,
+  matchTerminate,
+  matchSignal,
+} from './match_handler'
+import { rpcFindMatch } from './match_rpc'
+import { rpcReward } from './daily_rewards'
 
-const rpcIdRewards = 'rewards_js';
-const rpcIdFindMatch = 'find_match_js';
+const rpcIdRewards = 'rewards_js'
+const rpcIdFindMatch = 'find_match_js'
 
-function InitModule(ctx: nkruntime.Context, logger: nkruntime.Logger, nk: nkruntime.Nakama, initializer: nkruntime.Initializer) {
-    initializer.registerRpc(rpcIdRewards, rpcReward);
+function InitModule(
+  ctx: nkruntime.Context,
+  logger: nkruntime.Logger,
+  nk: nkruntime.Nakama,
+  initializer: nkruntime.Initializer,
+): void {
+  initializer.registerRpc(rpcIdRewards, rpcReward)
 
-    initializer.registerRpc(rpcIdFindMatch, rpcFindMatch);
+  initializer.registerRpc(rpcIdFindMatch, rpcFindMatch)
 
-    initializer.registerMatch(moduleName, {
-        matchInit,
-        matchJoinAttempt,
-        matchJoin,
-        matchLeave,
-        matchLoop,
-        matchTerminate,
-        matchSignal,
-    });
+  initializer.registerMatch(moduleName, {
+    matchInit,
+    matchJoinAttempt,
+    matchJoin,
+    matchLeave,
+    matchLoop,
+    matchTerminate,
+    matchSignal,
+  })
 
-    initializer.registerRpc('version', version);
+  initializer.registerRpc('version', version)
 
-    logger.info('JavaScript logic loaded.');
+  logger.info('JavaScript logic loaded.')
 }
 
 /**
@@ -46,22 +60,28 @@ function InitModule(ctx: nkruntime.Context, logger: nkruntime.Logger, nk: nkrunt
  * @param nk
  * @param payload
  */
-const version: nkruntime.RpcFunction =
-    function (ctx: nkruntime.Context, logger: nkruntime.Logger, nk: nkruntime.Nakama, payload: string = ""): string {
-        let input: any = {}
-        if (payload) {
-            JSON.parse(payload)
-        }
-        logger.info(`${process.env.VERSION}-${process.env.BUILD_TIME}: input: %q`, input);
-        let result = {
-            version: process.env.VERSION,
-            time: process.env.BUILD_TIME,
-            env: process.env.MODE
-        }
+const version: nkruntime.RpcFunction = function (
+  ctx: nkruntime.Context,
+  logger: nkruntime.Logger,
+  nk: nkruntime.Nakama,
+  payload: string = '',
+): string {
+  const input: any = {}
+  if (payload) {
+    JSON.parse(payload)
+  }
+  logger.info(
+    `${process.env.VERSION}-${process.env.BUILD_TIME}: input: %q`,
+    input,
+  )
+  const result = {
+    version: process.env.VERSION,
+    time: process.env.BUILD_TIME,
+    env: process.env.MODE,
+  }
 
-        return JSON.stringify(result);
-    }
-
+  return JSON.stringify(result)
+}
 
 // Reference InitModule to avoid it getting removed on build
-!InitModule && InitModule.bind(null);
+!InitModule && InitModule.bind(null)

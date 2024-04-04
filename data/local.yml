@@ -1,10 +1,10 @@
 name: nakama-node-1
-data_dir: "./data/"
+data_dir: './data/'
 
 logger:
   stdout: false
-  level: "DEBUG"
-  file: "/nakama/data/logfile.log"
+  level: 'DEBUG'
+  file: '/nakama/data/logfile.log'
 
 console:
   port: 7351
@@ -13,7 +13,7 @@ console:
   password: password
 
 runtime:
-  js_entrypoint: "build/index.js"
+  js_entrypoint: 'build/index.js'
   js_max_count: 128
 socket:
   max_message_size_bytes: 4096

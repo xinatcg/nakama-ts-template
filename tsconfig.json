@@ -17,15 +17,7 @@
       }
     ]
   },
-  "files": [
-    "./node_modules/nakama-runtime/index.d.ts",
-  ],
-  "include": [
-    "src/**/*",
-    "test/**/*",
-  ],
-  "exclude": [
-    "node_modules",
-    "build"
-  ]
+  "files": ["./node_modules/nakama-runtime/index.d.ts"],
+  "include": ["src/**/*", "test/**/*"],
+  "exclude": ["node_modules", "build"]
 }
