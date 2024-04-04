@@ -2,13 +2,10 @@
 module.exports = {
   preset: 'ts-jest',
   testEnvironment: 'node',
-  globals: {
-    'ts-jest': {
-      compiler: 'ts-patch/compiler'
-    }
-  },
   transform: {
-    ".(ts|tsx)": "ts-jest"
+    ".(ts|tsx)": ["ts-jest", {
+      compiler: 'ts-patch/compiler'
+    }]
   },
   setupFiles: [
     '<rootDir>jest-config.ts'
