@@ -9,13 +9,20 @@
     "removeComments": true,
     "target": "es5",
     "module": "ESNext",
-    "strict": true
+    "strict": true,
+    "plugins": [
+      {
+        "transform": "ts-auto-mock/transformer",
+        "cacheBetweenTests": false
+      }
+    ]
   },
   "files": [
     "./node_modules/nakama-runtime/index.d.ts",
   ],
   "include": [
     "src/**/*",
+    "test/**/*",
   ],
   "exclude": [
     "node_modules",
