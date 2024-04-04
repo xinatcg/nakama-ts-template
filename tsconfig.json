@@ -9,7 +9,7 @@
     "removeComments": true,
     "target": "es5",
     "module": "ESNext",
-    "strict": false,
+    "strict": true
   },
   "files": [
     "./node_modules/nakama-runtime/index.d.ts",
